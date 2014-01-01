@@ -22,6 +22,7 @@ PaginatedSubscriptionHandle.prototype.room = function() {
 PaginatedSubscriptionHandle.prototype.changeRoom = function(room) {
   this._room = room;
   this._room_listeners.changed();
+  Session.set("chatworks-chatroom", this._room);
 };
 
 PaginatedSubscriptionHandle.prototype.loaded = function() {
