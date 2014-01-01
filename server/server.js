@@ -7,6 +7,14 @@ Meteor.startup(function () {
     minuteAgo.setMinutes(minuteAgo.getMinutes() - 1);
     ChatworksUsers.remove({last_seen: {$lt: +minuteAgo}});
   }, pingTimer);
+  
+  // initialize rooms database
+  if(ChatworksRooms.find().count() > 0) return;
+  for(var i = 0; i < 2; i++){
+    ChatworksRooms.insert({
+      room: "chatworks" + i
+    });
+  }
 });
 
 Meteor.methods({
